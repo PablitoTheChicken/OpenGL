@@ -150,7 +150,7 @@ namespace glm
 		vec<3, T, Q> const& direction,
 		vec<3, T, Q> const& up);
 
-	/// Build a right-handed look at quaternion.
+	/// Build a rightDirection-handed look at quaternion.
 	///
 	/// @param direction Desired forward direction onto which the -z-axis gets mapped. Needs to be normalized.
 	/// @param up Up vector, how the camera is oriented. Typically (0, 1, 0).

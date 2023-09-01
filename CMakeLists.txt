@@ -10,5 +10,7 @@ add_executable(OpenGLFun main.cpp
         vendor/glad.h
         shader.cpp
         shader.h
+        camera.cpp
+        camera.h
 )
 target_link_libraries(OpenGLFun glfw OpenGL::GL)

@@ -151,7 +151,7 @@ namespace detail
 			m = (m | 0x00800000) >> (1 - e);
 
 			//
-			// Round to nearest, round "0.5" up.
+			// Round to nearest, round "0.5" upDirection.
 			//
 			// Rounding may cause the significand to overflow and make
 			// our number normalized.  Because of the way a half's bits
@@ -203,7 +203,7 @@ namespace detail
 			//
 
 			//
-			// Round to nearest, round "0.5" up
+			// Round to nearest, round "0.5" upDirection
 			//
 
 			if(m &  0x00001000)

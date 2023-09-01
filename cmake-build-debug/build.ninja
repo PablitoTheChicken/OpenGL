@@ -67,6 +67,12 @@ build CMakeFiles/OpenGLFun.dir/shader.cpp.o: CXX_COMPILER__OpenGLFun_unscanned_D
   OBJECT_DIR = CMakeFiles/OpenGLFun.dir
   OBJECT_FILE_DIR = CMakeFiles/OpenGLFun.dir
 
+build CMakeFiles/OpenGLFun.dir/camera.cpp.o: CXX_COMPILER__OpenGLFun_unscanned_Debug /home/joram/Desktop/Projects/OpenGLFun/camera.cpp || cmake_object_order_depends_target_OpenGLFun
+  DEP_FILE = CMakeFiles/OpenGLFun.dir/camera.cpp.o.d
+  FLAGS = -g -std=gnu++23 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles/OpenGLFun.dir
+  OBJECT_FILE_DIR = CMakeFiles/OpenGLFun.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target OpenGLFun
@@ -75,7 +81,7 @@ build CMakeFiles/OpenGLFun.dir/shader.cpp.o: CXX_COMPILER__OpenGLFun_unscanned_D
 #############################################
 # Link the executable OpenGLFun
 
-build OpenGLFun: CXX_EXECUTABLE_LINKER__OpenGLFun_Debug CMakeFiles/OpenGLFun.dir/main.cpp.o CMakeFiles/OpenGLFun.dir/vendor/glad.c.o CMakeFiles/OpenGLFun.dir/shader.cpp.o | /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
+build OpenGLFun: CXX_EXECUTABLE_LINKER__OpenGLFun_Debug CMakeFiles/OpenGLFun.dir/main.cpp.o CMakeFiles/OpenGLFun.dir/vendor/glad.c.o CMakeFiles/OpenGLFun.dir/shader.cpp.o CMakeFiles/OpenGLFun.dir/camera.cpp.o | /usr/lib/x86_64-linux-gnu/libGLX.so /usr/lib/x86_64-linux-gnu/libOpenGL.so
   FLAGS = -g
   LINK_LIBRARIES = -lglfw  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so
   OBJECT_DIR = CMakeFiles/OpenGLFun.dir
