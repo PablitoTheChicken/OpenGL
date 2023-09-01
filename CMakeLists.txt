@@ -8,5 +8,7 @@ find_package(OpenGL REQUIRED)
 add_executable(OpenGLFun main.cpp
         vendor/glad.c
         vendor/glad.h
+        shader.cpp
+        shader.h
 )
 target_link_libraries(OpenGLFun glfw OpenGL::GL)
