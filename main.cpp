@@ -55,6 +55,7 @@ int main() {
     stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load("../container.jpg", &width, &height, &nrChannels, 0);
 
+    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     Shader ourShader("../shaders/default.vs", "../shaders/default.fs");
 
     unsigned int VAO;
@@ -92,16 +93,23 @@ int main() {
     glGenerateMipmap(GL_TEXTURE_2D);
     stbi_image_free(data);
 
-    //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-    glm::mat4 trans = glm::mat4(1.0f);
-    trans = glm::rotate(trans, glm::radians(90.0f), glm::vec3(0.0, 0.0, 1.0));
-    trans = glm::scale(trans, glm::vec3(0.5, 0.5, 0.5));
+    // Camera
+    glm::mat4 model = glm::mat4(1.0f);
+    model = glm::rotate(model, glm::radians(-55.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    glm::mat4 view = glm::mat4(1.0f);
+    view = glm::translate(view, glm::vec3(0.0f, 0.0f, -3.0f));
+    glm::mat4 projection;
+    projection = glm::perspective(glm::radians(45.0f), 800.0f / 600.0f, 0.1f, 100.0f);
 
     ourShader.use();
     ourShader.setInt("texture1", 0);
-    unsigned int transformLoc = glGetUniformLocation(ourShader.ID, "transform");
-    glUniformMatrix4fv(transformLoc, 1, GL_FALSE, glm::value_ptr(trans));
+
+    int modelLoc = glGetUniformLocation(ourShader.ID, "model");
+    glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+    int viewLoc = glGetUniformLocation(ourShader.ID, "view");
+    glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
+    int projLoc = glGetUniformLocation(ourShader.ID, "projection");
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     while(!glfwWindowShouldClose(window)) {
 
