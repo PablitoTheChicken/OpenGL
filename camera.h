@@ -22,15 +22,15 @@ class Camera
 public:
 
     glm::vec3 Position{};
-    glm::vec3 Front{};
-    glm::vec3 Up{};
-    glm::vec3 Right{};
-    glm::vec3 WorldUp{};
-    float Yaw;
-    float Pitch;
+    glm::vec3 LookVector{};
+    glm::vec3 UpVector{};
+    glm::vec3 RightVector{};
+    glm::vec3 WorldUpVector{};
     float MovementSpeed{};
     float MouseSensitivity{};
     float Zoom{};
+    float Yaw;
+    float Pitch;
 
     Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f), float yaw = YAW, float pitch = PITCH);
     glm::mat4 GetViewMatrix() const;
