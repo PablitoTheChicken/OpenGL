@@ -1,5 +1,5 @@
 #pragma once
-#include "vendor/glad.h"
+#include "GLFW/glfw3.h"
 #include "vendor/glm/glm.hpp"
 #include "vendor/glm/gtc/matrix_transform.hpp"
 #include <vector>

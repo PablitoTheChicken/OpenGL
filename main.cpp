@@ -1,8 +1,7 @@
-#include <iostream>
-#include "vendor/glad.h"
-#include "GLFW/glfw3.h"
 #include "shader.h"
 #include "camera.h"
+#include "window.h"
+#include "input.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "vendor/stb_image.h"
 
@@ -77,49 +76,12 @@ const unsigned int SCR_HEIGHT = 600;
 
 // camera
 Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
+Window appWindow(SCR_WIDTH, SCR_HEIGHT, "Window");
+Input input(appWindow.getWindow(), camera);
 
-float deltaTime = 0.0f;
 float lastFrame = 0.0f;
 
-void windowResize(GLFWwindow* window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-}
-
-void processInput(GLFWwindow *window)
-{
-    if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_W) == GLFW_PRESS)
-        camera.ProcessKeyboard(FORWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_S) == GLFW_PRESS)
-        camera.ProcessKeyboard(BACKWARD, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
-        camera.ProcessKeyboard(LEFT, deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
-        camera.ProcessKeyboard(RIGHT, deltaTime);
-}
-
 int main() {
-
-    glfwInit();
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    
-    GLFWwindow* window;
-    window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "Window", NULL, NULL);
-    glfwMakeContextCurrent(window);
-    glfwSetFramebufferSizeCallback(window, windowResize);
-
-    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-        glfwTerminate();
-        return -1;
-    }
-
-    glViewport(0, 0, SCR_WIDTH, SCR_HEIGHT);
-
     int width, height, nrChannels;
     stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load("../container.jpg", &width, &height, &nrChannels, 0);
@@ -166,13 +128,14 @@ int main() {
     ourShader.use();
     ourShader.setInt("texture1", 0);
 
-    while(!glfwWindowShouldClose(window)) {
+    while(!appWindow.shouldClose()) {
         auto currentFrame = static_cast<float>(glfwGetTime());
-        deltaTime = currentFrame - lastFrame;
+        float deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
         // Input
-        processInput(window);
+        input.updateDeltaTime(deltaTime);
+        input.processInput();
 
         // Rendering
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -202,8 +165,8 @@ int main() {
         }
 
         // Window & Buffer
-        glfwSwapBuffers(window);
-        glfwPollEvents();
+        appWindow.pollEvents();
+        appWindow.swapBuffers();
     }
 
     glDeleteVertexArrays(1, &VAO);
