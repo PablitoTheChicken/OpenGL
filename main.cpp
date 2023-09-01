@@ -38,7 +38,7 @@ int main() {
 
     glViewport(0, 0, 640, 480);
 
-    Shader ourShader("/home/joram/Desktop/Projects/OpenGLFun/shaders/default.vs", "/home/joram/Desktop/Projects/OpenGLFun/shaders/default.fs");
+    Shader ourShader("../shaders/default.vs", "../shaders/default.fs");
 
     unsigned int VAO;
     glGenVertexArrays(1, &VAO);
