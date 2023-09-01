@@ -84,7 +84,7 @@ float lastFrame = 0.0f;
 int main() {
     int width, height, nrChannels;
     stbi_set_flip_vertically_on_load(true);
-    unsigned char *data = stbi_load("../container.jpg", &width, &height, &nrChannels, 0);
+    unsigned char *data = stbi_load("../resources/container.jpg", &width, &height, &nrChannels, 0);
 
     //glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
     glEnable(GL_DEPTH_TEST);
