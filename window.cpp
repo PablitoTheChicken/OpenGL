@@ -12,7 +12,6 @@ Window::Window(int width, int height, const char *title) : width(width), height(
 
     glViewport(0, 0, width, height);
 
-    // Create the GLFW window
     window = glfwCreateWindow(width, height, title, nullptr, nullptr);
     if (!window) {
         std::cerr << "Failed to create GLFW window" << std::endl;

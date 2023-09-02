@@ -16,5 +16,7 @@ add_executable(OpenGLFun main.cpp
         input.h
         window.cpp
         window.h
+        engine.cpp
+        engine.h
 )
 target_link_libraries(OpenGLFun glfw OpenGL::GL)
