@@ -1,4 +1,5 @@
 #include "engine.h"
+#include <iostream>
 
 // settings
 const unsigned int SCR_WIDTH = 800;

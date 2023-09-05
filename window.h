@@ -10,7 +10,7 @@ public:
 
     GLFWwindow* getWindow();
     bool shouldClose();
-    void pollEvents();
+    static void pollEvents();
     void swapBuffers();
 
 private:
@@ -18,8 +18,8 @@ private:
     int width, height;
     const char *title;
 
-    static void framebufferSizeCallback(GLFWwindow* window, int width, int height) {
-        glViewport(0, 0, width, height);
+    static void framebufferSizeCallback(GLFWwindow* window, int m_width, int m_height) {
+        glViewport(0, 0, m_width, m_height);
     }
 
 };
